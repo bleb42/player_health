@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,7 @@ public class HealthBar : MonoBehaviour
         _slider = GetComponent<Slider>();
     }
 
-    public IEnumerator UpdateValue()
+    private IEnumerator ChangeValue()
     {
         var changingTime = new WaitForSeconds(Time.deltaTime / _changingTime);
 
@@ -27,4 +26,10 @@ public class HealthBar : MonoBehaviour
             yield return changingTime;
         }
     }
+
+    public void UpdateValue()
+    {
+        StartCoroutine(ChangeValue());
+    }
+
 }

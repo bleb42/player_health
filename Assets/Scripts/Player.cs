@@ -6,21 +6,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     { 
-        Health -= damage;
-
-        if (Health < 0)
-            Health= 0;
-        else if(Health > 1)
-            Health= 1;
+        Health = Mathf.Clamp(Health - damage, 0, 1);
     }
 
     public void Heal(float heal)
     {
-        Health += heal;
-
-        if (Health < 0)
-            Health = 0;
-        else if (Health > 1)
-            Health = 1;
+        Health = Mathf.Clamp(Health + heal, 0, 1);
     }
 }

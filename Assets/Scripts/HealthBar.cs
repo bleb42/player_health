@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
@@ -16,14 +17,6 @@ public class HealthBar : MonoBehaviour
         _slider = GetComponent<Slider>();
     }
 
-    private void Update()
-    {
-        if (_slider.value != _player.Health)
-        {
-            StartChangingValue();
-        }
-    }
-
     private IEnumerator ChangeValue()
     {
         while (_player.Health != _slider.value)
@@ -34,7 +27,7 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    private void StartChangingValue()
+    public void StartChangingValue()
     {
         if (_changeValue != null)
             StopCoroutine(_changeValue);
